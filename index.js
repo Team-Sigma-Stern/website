@@ -46,3 +46,26 @@ function toggleSidebar(item) {
 function logout() {
 	alert("logged out");
 }
+
+function myBlurFunction (state) {
+    /* state can be 1 or 0 */
+    var containerElement = document.getElementsByClassName('main')[0];
+    var overlayEle = document.getElementById('overlay');
+
+    if (state) {
+        overlayEle.style.display = 'flex';
+        containerElement.classList.add('blur');
+    } else {
+        overlayEle.style.display = 'none';
+        containerElement.classList.remove('blur');
+    }
+};
+
+function easterEgg() {
+	var username = document.getElementById("username");
+	if (username.value.toLowerCase() === "ruffdd") {
+		document.getElementById("dialog").style.backgroundImage = "url('./icons/david.jpg')";
+	} else {
+		document.getElementById("dialog").style.backgroundImage = null;
+	}
+}

@@ -14,7 +14,8 @@
 	<title>Editor</title>
 </head>
 <body>
-	<div class="main">
+
+	<div class="main blur">
 		<div id="icon-bar" class="item">
 			<img src="./icons/Projects.png" alt="" onclick="toggleSidebar('projects')" width="100%">
 			<img src="./icons/Explorer_big.png" alt="" onclick="toggleSidebar('explorer')" width="100%">
@@ -22,7 +23,7 @@
 			<img src="./icons/Git.png" alt="" onclick="toggleSidebar('git')" width="100%">
 			<div style="position: absolute; bottom: 0px; left:10px; width: 30px">
 					<img src="./icons/Settings.png" alt="" onclick="toggleSidebar('settings')" width="100%">
-					<img src="./icons/Logout.png" alt="" onclick="logout()" width="100%" >
+					<img src="./icons/Logout.png" alt="" onclick="myBlurFunction(true)" width="100%" >
 			</div>
 		</div>
 		<div id="sidebar" class="item">
@@ -82,7 +83,16 @@
 			<div id="editor"></div>
 		</div>
 	</div>
-
+	<div id="overlay">
+			<div class="container" id="dialog">
+				<h1>Willkommen</h1>
+				<form class="form">
+					<input id="username" placeholder="Username" type="text" onkeyup="easterEgg()">
+					<input placeholder="Password" type="password">
+					<button type="button" id="login-button" onclick="myBlurFunction(false);">Login</button>
+				</form>
+			</div>
+		</div>
 	<script src="./node_modules/monaco-editor/min/vs/loader.js"></script>
 	<script src="./index.js"></script>
 </body>
