@@ -1,4 +1,5 @@
 html, body {
+    font-family: 'Roboto', sans-serif;
     height: 100%;
     overflow: hidden;
 }
@@ -37,6 +38,9 @@ html, body {
 
 #header {
     height: 30px;
+    border-bottom-color: #454545;
+    border-bottom: 1px;
+    margin-bottom: 5px;
 }
 
 #editor {
