@@ -17,12 +17,12 @@ html, body {
 }
 
 #sidebar{
-    background-color: aqua;
+    background-color: rgb(54, 54, 54);
     width: 20%;
 }
 
 #icon-bar {
-    background-color: red;
+    background-color: rgb(70, 70, 70);
     width: 50px;
     padding: 10px;
 }
