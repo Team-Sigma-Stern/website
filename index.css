@@ -1,12 +1,14 @@
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
 .main{
     height: 100%;
     display: flex;
     flex: 1 1 auto;
     flex-direction: row;
     flex-wrap: nowrap;
-}
-html, body {
-    height: 100%;
 }
 
 .item {
@@ -25,4 +27,13 @@ html, body {
 }
 
 #content{
+    flex: 1;
+}
+
+#header {
+    height: 30px;
+}
+
+#editor {
+    height: calc(100% - 30px);
 }
