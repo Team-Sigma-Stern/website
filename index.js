@@ -38,6 +38,6 @@ function toggleSidebar(item) {
 	}
 }
 
-logout() {
+function logout() {
 	alert("logged out");
 }
