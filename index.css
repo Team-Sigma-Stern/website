@@ -22,6 +22,13 @@ html, body {
     background-color: rgb(54, 54, 54);
     width: 20%;
     display: none;
+    padding: 15px;
+    color: whitesmoke;
+}
+
+#sidebar > div {
+    display: none;
+
 }
 
 #icon-bar {
@@ -38,11 +45,12 @@ html, body {
     flex: 1;
 }
 
-#header {
+.header {
     height: 30px;
     border-bottom: 2px solid rgb(54, 54, 54);
     background-color: rgb(30,30,30);
     color: aqua;
+    text-align: center;
 }
 
 #editor {

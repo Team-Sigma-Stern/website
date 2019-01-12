@@ -16,6 +16,7 @@
 <body>
 	<div class="main">
 		<div id="icon-bar" class="item">
+			<img src="./icons/Projects.png" alt="" onclick="toggleSidebar('projects')" width="100%">
 			<img src="./icons/Explorer_big.png" alt="" onclick="toggleSidebar('explorer')" width="100%">
 			<img src="./icons/Search.png" alt="" onclick="toggleSidebar('search')" width="100%">
 			<img src="./icons/Git.png" alt="" onclick="toggleSidebar('git')" width="100%">
@@ -25,13 +26,58 @@
 			</div>
 		</div>
 		<div id="sidebar" class="item">
-			<div id="explorer" class="sidebar-tab">explorer</div>
-			<div id="search" class="sidebar-tab">search</div>
-			<div id="git" class="sidebar-tab">git</div>
-			<div id="settings" class="sidebar-tab">settings</div>
+			<div id="projects">
+				<div class="header">
+					<h5>Project Overview</h5>
+				</div>
+			</div>
+			<div id="explorer">
+				<div class="header">
+					<h5>Explorer</h5>
+				</div>
+				explorer
+			</div>
+			<div id="search">
+				<div class="header">
+					<h5>Search</h5>
+				</div>
+				search
+			</div>
+			<div id="git">
+				<div class="header">
+					<h5>Git Version Control</h5>
+				</div>
+				git
+			</div>
+			<div id="settings">
+				<div class="header">
+					<h5>Settings</h5>
+				</div>
+				<div>Fontsize</div>
+				<div>test</div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<ol>
+				<li>
+					<div>in list</div>
+				</li>
+				<li>
+					<div>list</div>
+				</li>
+				<li>
+					<div>test</div>
+				</li>
+			</ol>
 		</div>
 		<div id="content" class="item">
-			<div id="header">
+			<div class="header">
 				<h5>File Name</h5>
 			</div>
 			<div id="editor"></div>

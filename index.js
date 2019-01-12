@@ -8,7 +8,7 @@ require(['vs/editor/editor.main'], function() {
 		fontFamily: "Hack",
 		language: "python",
 		theme: "vs-dark",
-		value: "Hi, this is a example file!\n",
+		value: "Hi, this is an example file!\n",
 	});
 });
 
@@ -16,6 +16,7 @@ function toggleSidebar(item) {
 	if (item == null) {
 		if (active != null) {
 			// deactivate tab active
+			document.getElementById(active).style.display = "none";
 		}
 		return
 	}
@@ -26,15 +27,19 @@ function toggleSidebar(item) {
 		document.getElementById("sidebar").style.display = "block";
 		editor.layout(1,1);
 		editor.layout();
+		document.getElementById(item).style.display = "block";
 	} else if (active == item) {
 		// deactivate tab item
 		active = null;
 		document.getElementById("sidebar").style.display = "none";
+		document.getElementById(item).style.display = "none";
 		editor.layout();
 	} else {
 		// deactivate tab active
 		// activate tab item
+		document.getElementById(active).style.display = "none";
 		active = item;
+		document.getElementById(item).style.display = "block";
 	}
 }
 
