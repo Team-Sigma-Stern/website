@@ -1,6 +1,6 @@
 require.config({ paths: { 'vs': '../node_modules/monaco-editor/min/vs' }});
 
-var editor = null;
+var editor;
 var active = null;
 
 require(['vs/editor/editor.main'], function() {
@@ -13,14 +13,31 @@ require(['vs/editor/editor.main'], function() {
 });
 
 function toggleFiles() {
+	toggleSidebar("files");
+}
+
+function toggleSidebar(item) {
+	if (item == null) {
+		if (active != null) {
+			// deactivate tab active
+		}
+		return
+	}
+
 	if (active == null) {
-		active = "files";
+		// activate tab item
+		active = item;
 		document.getElementById("sidebar").style.display = "block";
+		editor.layout(1,1);
 		editor.layout();
-	} else if (active == "files") {
+	} else if (active == item) {
+		// deactivate tab item
 		active = null;
 		document.getElementById("sidebar").style.display = "none";
 		editor.layout();
 	} else {
+		// deactivate tab active
+		// activate tab item
+		active = item;
 	}
 }
