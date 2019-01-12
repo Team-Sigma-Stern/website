@@ -17,13 +17,36 @@
 
 	<div class="main blur">
 		<div id="icon-bar" class="item">
-			<img src="./icons/Projects.png" alt="" onclick="toggleSidebar('projects')" width="100%">
-			<img src="./icons/Explorer_big.png" alt="" onclick="toggleSidebar('explorer')" width="100%">
-			<img src="./icons/Search.png" alt="" onclick="toggleSidebar('search')" width="100%">
-			<img src="./icons/Git.png" alt="" onclick="toggleSidebar('git')" width="100%">
+
+			<div class="image-container">
+				<img src="./icons/Projects.png" alt="">
+				<div class="after" onclick="toggleSidebar('projects')"></div>
+			</div>
+			<div class="image-container" width="100%">
+				<img src="./icons/Explorer_big.png" alt="">
+				<div class="after" onclick="toggleSidebar('explorer')"></div>
+			</div>
+			<div class="image-container" width="100%">
+				<img src="./icons/Search.png" alt="">
+				<div class="after" onclick="toggleSidebar('search')"></div>
+			</div>
+			<div class="image-container" width="100%">
+				<img src="./icons/Git.png" alt="">
+				<div class="after" onclick="toggleSidebar('git')"></div>
+			</div>
+
+
 			<div style="position: absolute; bottom: 0px; left:10px; width: 30px">
-					<img src="./icons/Settings.png" alt="" onclick="toggleSidebar('settings')" width="100%">
-					<img src="./icons/Logout.png" alt="" onclick="myBlurFunction(true)" width="100%" >
+				<div class="image-container" width="100%">
+					<img src="./icons/Settings.png" alt="">
+					<div class="after" onclick="toggleSidebar('settings')"></div>
+				</div>
+				<div class="image-container" width="100%">
+					<img src="./icons/Logout.png" alt="">
+					<div class="after" onclick="myBlurFunction(true)"></div>
+				</div>
+
+
 			</div>
 		</div>
 		<div id="sidebar" class="item">
