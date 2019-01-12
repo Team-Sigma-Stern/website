@@ -12,10 +12,6 @@ require(['vs/editor/editor.main'], function() {
 	});
 });
 
-function toggleFiles() {
-	toggleSidebar("files");
-}
-
 function toggleSidebar(item) {
 	if (item == null) {
 		if (active != null) {
