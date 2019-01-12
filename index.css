@@ -16,13 +16,19 @@ html, body {
 
 #sidebar{
     background-color: aqua;
-    width: 500px;
+    width: 20%;
 }
 
 #icon-bar {
     background-color: red;
-    width: 100px;
+    width: 50px;
+    padding: 10px;
+}
+
+#icon-bar img {
+    padding-bottom: 10px;
 }
 
 #content{
+    flex: 1;
 }
