@@ -27,3 +27,13 @@ const login = async (user, passwd) => {
 	window.localStorage.localStorage.setItem('display-name', response_parsed['display-name']);
 	window.localStorage.localStorage.setItem('auth-token', response_parsed['auth-token']);
 }
+
+const logout = async () => {
+	const response = await API_POST('logout', "");
+}
+
+const get_projects = async () => {
+	const response = await API_GET('projects');
+	const response_parsed = await response.json();
+	return response_parsed;
+}
