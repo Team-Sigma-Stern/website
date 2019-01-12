@@ -18,7 +18,7 @@ html, body {
     flex-shrink: 0;
 }
 
-#sidebar{
+#sidebar {
     background-color: rgb(54, 54, 54);
     width: 20%;
     display: none;
