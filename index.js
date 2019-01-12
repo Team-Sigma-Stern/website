@@ -37,3 +37,7 @@ function toggleSidebar(item) {
 		active = item;
 	}
 }
+
+logout() {
+	alert("logged out");
+}

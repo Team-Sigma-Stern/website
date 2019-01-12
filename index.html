@@ -21,13 +21,14 @@
 			<img src="./icons/Git.png" alt="" onclick="toggleSidebar('git')" width="100%">
 			<div style="position: absolute; bottom: 0px; left:10px; width: 30px">
 					<img src="./icons/Settings.png" alt="" onclick="toggleSidebar('settings')" width="100%">
-					<img src="./icons/Logout.png" alt="" onclick="toggleSidebar('logout')" width="100%" >
+					<img src="./icons/Logout.png" alt="" onclick="logout()" width="100%" >
 			</div>
-
-
 		</div>
 		<div id="sidebar" class="item">
-			Das ist die Sidebar
+			<div id="explorer" class="sidebar-tab">explorer</div>
+			<div id="search" class="sidebar-tab">search</div>
+			<div id="git" class="sidebar-tab">git</div>
+			<div id="settings" class="sidebar-tab">settings</div>
 		</div>
 		<div id="content" class="item">
 			<div id="header">
