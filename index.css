@@ -67,4 +67,5 @@ html, body {
 
 #editor {
     height: calc(100% - 40px);
+    padding: 5px 0px;
 }
