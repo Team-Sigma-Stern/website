@@ -1,9 +1,7 @@
 .main{
-    /*
-    display: grid;
-    grid-template-columns: 100px 500px 1fr;
-    */
     height: 100%;
+    display: flex;
+    flex: 1 1 auto;
     flex-direction: row;
     flex-wrap: nowrap;
 }
@@ -12,8 +10,8 @@ html, body {
 }
 
 .item {
-    float: left;
     height: 100%;
+    flex-shrink: 0;
 }
 
 #sidebar{
@@ -27,5 +25,4 @@ html, body {
 }
 
 #content{
-    width: 60%;
 }
