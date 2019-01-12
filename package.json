@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Team-Sigma-Stern/website#readme",
   "dependencies": {
+    "bootstrap": "^4.2.1",
     "monaco-editor": "^0.15.6"
   }
 }
