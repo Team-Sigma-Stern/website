@@ -188,6 +188,6 @@ function search(givenString) {
 
 function openFile(file) {
 	get_project_file(activeProjectName, file).then(function (data) {
-		console.log(data);
+		editor.setValue(data);
 	})
 }

@@ -40,27 +40,48 @@ const auth_logout = async () => {
 	window.localStorage.removeItem('name');
 	window.localStorage.removeItem('display-name');
 	window.localStorage.removeItem('auth-token');
+
+	return response.ok
 }
 
 const get_projects = async () => {
 	const response = await API_GET('projects');
+	if (!response.ok) return null;
+
 	const response_parsed = await response.json();
 	return response_parsed;
 }
 
 const get_project = async (id) => {
 	const response = await API_GET('projects/' + id);
+	if (!response.ok) return null;
+
 	const response_parsed = await response.json();
 	return response_parsed;
 }
 
 const get_project_files = async (project) => {
 	const response = await API_GET('projects/' + project + '/files');
+	if (!response.ok) return null;
+
 	const response_parsed = await response.json();
 	return response_parsed;
 }
 
 const get_project_file = async (project, id) => {
-	const response = await API_GET('projects/' + project + '/files/' + id);
+	const response = await API_GET('projects/' + project + '/files/' + encodeURIComponent(encodeURIComponent(id)));
+
+	if (!response.ok) return null;
+
 	return response.text();
+}
+
+const lock_project_file = async (project, id) => {
+	const response = await API_POST('projects/' + project + '/files/' + encodeURIComponent(encodeURIComponent(id)) + '/lock', "");
+	return response.ok;
+}
+
+const unlock_project_file = async (project, id) => {
+	const response = await API_POST('projects/' + project + '/files/' + encodeURIComponent(encodeURIComponent(id)) + '/unlock', "");
+	return response.ok;
 }
