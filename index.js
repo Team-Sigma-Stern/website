@@ -187,5 +187,5 @@ function search(givenString) {
 }
 
 function openFile(file) {
-	//todo
+	get_project_file(activeProjectName, file);
 }
