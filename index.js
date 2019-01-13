@@ -3,7 +3,6 @@ require.config({ paths: { 'vs': '../node_modules/monaco-editor/min/vs' }});
 var editor;
 var active = null;
 var activeProject = null;
-var activeProjectName = "";
 var activeFile = null;
 
 require(['vs/editor/editor.main'], function() {
@@ -109,18 +108,27 @@ function fillExplorerSidebar(sidebar, recieved) {
 }
 
 function selectProject(name) {
+	if (activeProject === name) return;
+
+	if (activeProject != null)
+		document.getElementById('project-' + activeProject).style.backgroundColor = "";
+
+	document.getElementById('project-' + name).style.backgroundColor = "rgb(35,35,35)";
+
+	selectFile(null);
+	activeProject = name;
+	setEditorName();
+	toggleSidebar("explorer");
+	updateExplorerOverview(activeProject);
+
 	if (activeProject == null) {
-		document.getElementById('project-' + name).style.backgroundColor = "rgb(35,35,35)";
-		activeProject = name;
-		setEditorName(activeProjectName);
-		toggleSidebar("explorer");
-		updateExplorerOverview(activeProject);
+
 	} else if (activeProject != name) {
 		document.getElementById('project-' + activeProject).style.backgroundColor = "";
 		document.getElementById('project-' + name).style.backgroundColor = "rgb(35,35,35)"
 		activeProject = name;
 		selectFile(null);
-		setEditorName(activeProjectName);
+		setEditorName();
 		toggleSidebar("explorer");
 		updateExplorerOverview(activeProject);
 	}
@@ -135,7 +143,7 @@ function selectFile(name) {
 	if (activeFile == null) {
 		document.getElementById('file-' + name).style.backgroundColor = "rgb(35,35,35)";
 		activeFile = name;
-		setEditorName(activeProjectName);
+		setEditorName();
 		openFile();
 	} else if (activeFile != name) {
 		document.getElementById('file-' + activeFile).style.backgroundColor = "";
@@ -143,14 +151,14 @@ function selectFile(name) {
 		saveFile();
 		closeFile();
 		activeFile = name;
-		setEditorName(activeProjectName);
+		setEditorName();
 		openFile();
 	}
 }
 
-function setEditorName(projectname) {
+function setEditorName() {
 	var displayname = "";
-	displayname = projectname;
+	displayname = activeProject;
 	if (activeFile != null) {
 		displayname += "/" + activeFile;
 	}
@@ -164,8 +172,8 @@ function search(givenString) {
 }
 
 function openFile() {
-	lock_project_file(activeProjectName, activeFile).then(function () {
-		get_project_file(activeProjectName, activeFile).then(function (data) {
+	lock_project_file(activeProject, activeFile).then(function () {
+		get_project_file(activeProject, activeFile).then(function (data) {
 			editor.setValue(data);
 		});
 	});
@@ -176,5 +184,5 @@ function saveFile() {
 
 function closeFile() {
 	editor.setValue("");
-	unlock_project_file(activeProjectName, activeFile);
+	unlock_project_file(activeProject, activeFile);
 }
