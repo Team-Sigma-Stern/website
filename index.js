@@ -2,7 +2,7 @@ require.config({ paths: { 'vs': '../node_modules/monaco-editor/min/vs' }});
 
 var editor;
 var active = null;
-var active = null;
+var activeProject = null;
 
 require(['vs/editor/editor.main'], function() {
 	editor = monaco.editor.create(document.getElementById('editor'), {
@@ -104,6 +104,21 @@ function fillSidebar(sidebar, recieved) {
 	sidebar.innerHTML = "";
 	for (var content in recieved)
 	{
-		sidebar.innerHTML += "<li>" + recieved[content] + "</li>";
+		sidebar.innerHTML += "<div class='sidebar-list'" + "onclick='selectProject(this)'>" + recieved[content] + "</div>";
+	}
+}
+
+function selectProject(name) {
+	if (activeProject === null) {
+		name.style.backgroundColor = "rgb(35,35,35)";
+		activeProject = name;
+		document.getElementById("file-name").innerHTML = activeProject.innerHTML;
+	} else if (activeProject === name) {
+
+	} else {
+		activeProject.style.backgroundColor = "";
+		name.style.backgroundColor= "rgb(35,35,35)"
+		activeProject = name;
+		document.getElementById("file-name").innerHTML = activeProject.innerHTML;
 	}
 }

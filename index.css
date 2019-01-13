@@ -40,7 +40,15 @@ html, body {
 }
 
 .sidebar-content {
-    padding: 15px 0px;
+    padding: 10px 0px;
+}
+
+.sidebar-list {
+    padding-left: 40px;
+    cursor: pointer;
+}
+.sidebar-list:hover{
+    background-color: rgba(0, 0, 0, .6);
 }
 
 #icon-bar {
@@ -64,6 +72,7 @@ html, body {
     margin: -5px -5px 10px;
     display: none;
     color: #FFF;
+    cursor: pointer;
 }
 .image-container:hover .after {
     display: block;
