@@ -19,6 +19,15 @@ const API_POST = async (path, pbody) => {
 	});
 }
 
+const API_DELETE = async (path) => {
+	return fetch(API + path, {
+		method: 'DELETE',
+		headers: {
+			'auth-token': window.localStorage.getItem("auth-token")
+		}
+	});
+}
+
 const auth_login = async (user, passwd) => {
 	const response = await API_POST('login', { name: user, password: passwd });
 
@@ -88,5 +97,10 @@ const lock_project_file = async (project, id) => {
 
 const unlock_project_file = async (project, id) => {
 	const response = await API_POST('projects/' + project + '/files/' + encodeURIComponent(encodeURIComponent(id)) + '/unlock', "");
+	return response.ok;
+}
+
+const delete_project_file = async (project, id) => {
+	const response = await API_DELETE('projects/' + project + '/files/' + encodeURIComponent(encodeURIComponent(id)));
 	return response.ok;
 }

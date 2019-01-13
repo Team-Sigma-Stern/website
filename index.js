@@ -8,9 +8,9 @@ var activeFile = null;
 require(['vs/editor/editor.main'], function() {
 	editor = monaco.editor.create(document.getElementById('editor'), {
 		fontFamily: "Hack",
-		language: "python",
+		language: "javascript",
 		theme: "vs-dark",
-		value: "Hi, this is an example file!\n",
+		value: "Hello World\n",
 	});
 });
 
@@ -86,8 +86,8 @@ function updateProjectOverview() {
 	});
 }
 
-function updateExplorerOverview(project) {
-	get_project_files(project).then(function(files) {
+function updateExplorerOverview() {
+	get_project_files(activeProject).then(function(files) {
 		fillExplorerSidebar(document.getElementById("explorer-list"), files);
 	});
 }
@@ -99,6 +99,7 @@ function fillProjectSidebar(sidebar, recieved) {
 		sidebar.innerHTML += "<div id='project-" + projectname + "' class='sidebar-list'" + "onclick='selectProject(\"" + projectname + "\")'>" + projectname + "</div>";
 	}
 }
+
 function fillExplorerSidebar(sidebar, recieved) {
 	sidebar.innerHTML = "";
 	for (var index in recieved) {
@@ -119,7 +120,7 @@ function selectProject(name) {
 	activeProject = name;
 	setEditorName();
 	toggleSidebar("explorer");
-	updateExplorerOverview(activeProject);
+	updateExplorerOverview();
 }
 
 function selectFile(name) {
@@ -160,10 +161,21 @@ function search(givenString) {
 	}
 }
 
+function newFile() {
+	var name = prompt("Please enter a filename:", "Untitled_File");
+
+	selectFile(null);
+	save_project_file(activeProject, name, editor.getValue()).then(function() {
+		selectFile(name);
+		updateExplorerOverview();
+	});
+}
+
 function openFile() {
 	if (activeFile == null) return;
 
-	lock_project_file(activeProject, activeFile).then(function () {
+	lock_project_file(activeProject, activeFile).then(function (response) {
+		editor.updateOptions({ readOnly: !response })
 		get_project_file(activeProject, activeFile).then(function (data) {
 			editor.setValue(data);
 		});
@@ -181,4 +193,14 @@ function closeFile() {
 	if (activeFile == null) return;
 
 	unlock_project_file(activeProject, activeFile);
+}
+
+function deleteFile() {
+	if (activeFile == null) return;
+
+	fileToDelete = activeFile;
+	selectFile(null);
+	delete_project_file(activeProject, fileToDelete).then(function() {
+		updateExplorerOverview();
+	});
 }
