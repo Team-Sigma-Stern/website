@@ -120,18 +120,6 @@ function selectProject(name) {
 	setEditorName();
 	toggleSidebar("explorer");
 	updateExplorerOverview(activeProject);
-
-	if (activeProject == null) {
-
-	} else if (activeProject != name) {
-		document.getElementById('project-' + activeProject).style.backgroundColor = "";
-		document.getElementById('project-' + name).style.backgroundColor = "rgb(35,35,35)"
-		activeProject = name;
-		selectFile(null);
-		setEditorName();
-		toggleSidebar("explorer");
-		updateExplorerOverview(activeProject);
-	}
 }
 
 function selectFile(name) {
@@ -139,8 +127,7 @@ function selectFile(name) {
 		saveFile();
 		closeFile();
 		activeFile = null;
-	}
-	if (activeFile == null) {
+	} else if (activeFile == null) {
 		document.getElementById('file-' + name).style.backgroundColor = "rgb(35,35,35)";
 		activeFile = name;
 		setEditorName();
