@@ -171,6 +171,9 @@ function openFile() {
 }
 
 function saveFile() {
+	if (activeFile == null) return;
+
+	save_project_file(activeProject, activeFile, editor.getValue());
 }
 
 function closeFile() {

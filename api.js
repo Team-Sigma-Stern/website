@@ -76,6 +76,11 @@ const get_project_file = async (project, id) => {
 	return response.text();
 }
 
+const save_project_file = async (project, id, file) => {
+	const response = await API_POST('projects/' + project + '/files/' + encodeURIComponent(encodeURIComponent(id)), file);
+	return response.ok;
+}
+
 const lock_project_file = async (project, id) => {
 	const response = await API_POST('projects/' + project + '/files/' + encodeURIComponent(encodeURIComponent(id)) + '/lock', "");
 	return response.ok;
