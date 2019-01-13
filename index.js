@@ -3,6 +3,9 @@ require.config({ paths: { 'vs': '../node_modules/monaco-editor/min/vs' }});
 var editor;
 var active = null;
 var activeProject = null;
+var activeProjectName = "";
+var activeFile = null;
+var activeFileName = "";
 
 require(['vs/editor/editor.main'], function() {
 	editor = monaco.editor.create(document.getElementById('editor'), {
@@ -97,28 +100,87 @@ function easterEgg() {
 async function updateProjectOverview() {
 	var projects = await get_projects();
 	var sidebar = document.getElementById("projects-list");
-	fillSidebar(sidebar, projects);
+	fillProjectSidebar(sidebar, projects);
 }
 
-function fillSidebar(sidebar, recieved) {
+function fillProjectSidebar(sidebar, recieved) {
 	sidebar.innerHTML = "";
 	for (var content in recieved)
 	{
 		sidebar.innerHTML += "<div class='sidebar-list'" + "onclick='selectProject(this)'>" + recieved[content] + "</div>";
 	}
 }
+function fillExplorerSidebar(sidebar, recieved) {
+	sidebar.innerHTML = "";
+	for (var content in recieved)
+	{
+		sidebar.innerHTML += "<div class='sidebar-list'" + "onclick='selectFile(this)'>" + recieved[content] + "</div>";
+	}
+}
+
+async function updateExplorerOverview(project) {
+	var files = await get_project_files(project);
+	var sidebar = document.getElementById("explorer-list");
+	fillExplorerSidebar(sidebar, files);
+}
 
 function selectProject(name) {
 	if (activeProject === null) {
 		name.style.backgroundColor = "rgb(35,35,35)";
 		activeProject = name;
-		document.getElementById("file-name").innerHTML = activeProject.innerHTML;
+		activeProjectName = activeProject.innerHTML;
+		setEditorName(activeProjectName, activeFileName);
+		toggleSidebar("explorer");//done
+		updateExplorerOverview(activeProject.innerHTML);//done
 	} else if (activeProject === name) {
 
 	} else {
 		activeProject.style.backgroundColor = "";
 		name.style.backgroundColor= "rgb(35,35,35)"
 		activeProject = name;
-		document.getElementById("file-name").innerHTML = activeProject.innerHTML;
+		activeProjectName = activeProject.innerHTML;
+		activeFileName = "";
+		setEditorName(activeProjectName, activeFileName);
+		toggleSidebar("explorer");//done
+		updateExplorerOverview(activeProject.innerHTML);//done
 	}
+}
+
+function selectFile(name) {
+	if (activeFile === null) {
+		console.log(name.innerHTML);
+		name.style.backgroundColor = "rgb(35,35,35)";
+		activeFile = name;
+		activeFileName =activeFile.innerHTML;
+		setEditorName(activeProjectName, activeFileName);
+		openFile(activeFileName);
+	} else if (activeFile === name) {
+
+	} else {
+		activeFile.style.backgroundColor = "";
+		name.style.backgroundColor= "rgb(35,35,35)"
+		activeFile = name;
+		activeFileName =activeFile.innerHTML;
+		setEditorName(activeProjectName, activeFileName);
+		openFile(activeFileName);
+	}
+}
+
+function setEditorName(projectname, filename) {
+	var displayname = "";
+	displayname = projectname;
+	if (filename != "") {
+		displayname += "/" + filename;
+	}
+	document.getElementById("file-name").innerHTML = displayname;
+}
+
+function search(givenString) {
+	if (givenString === "joel") {
+		alert("TODO");
+	}
+}
+
+function openFile(file) {
+	//todo
 }

@@ -115,7 +115,9 @@ html, body {
     padding: 5px 0px;
 }
 
-
+.container-search-results {
+    padding: 15px;
+}
 /*
 #overlay1    {
     position: fixed;
@@ -138,6 +140,25 @@ html, body {
     margin: auto;
 }
 */
+#search-field {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    outline: 0;
+    border: 1px solid rgba(22, 22, 22, 0.7);
+    background-color: rgba(22, 22, 22, 0.5);
+    width: 100%;
+    padding: 10px 0px;
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: rgb(138, 138, 138);
+    transition-duration: 0.25s;
+}
+#search-field:focus {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: rgb(211, 211, 211);
+}
 
 .container {
     max-width: 600px;

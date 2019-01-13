@@ -55,7 +55,7 @@ const get_project = async (id) => {
 }
 
 const get_project_files = async (project) => {
-	const response = await API_GET('projects/' + project + '/files');
+	const response = await API_GET('projects/' + project ); //delted + '/files' and it seems to be working now
 	const response_parsed = await response.json();
 	return response_parsed;
 }

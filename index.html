@@ -57,7 +57,7 @@
 					<h5>Explorer</h5>
 				</div>
 				<div class="sidebar-content">
-					explorer
+					<div id="explorer-list"></div>
 				</div>
 			</div>
 			<div id="search">
@@ -65,7 +65,16 @@
 					<h5>Search</h5>
 				</div>
 				<div class="sidebar-content">
-					search
+					<input id="search-field" placeholder="Begin Search" type="text" onkeyup="search(this.value)">
+				</div>
+				<div class="container-search-results">
+					<div id="found-projects">
+						test
+					</div>
+					<hr style="background-color: white;">
+					<div id="found-files">
+						test
+					</div>
 				</div>
 			</div>
 			<div id="git">
