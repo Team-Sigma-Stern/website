@@ -19,7 +19,7 @@ const API_POST = async (path, pbody) => {
 	});
 }
 
-const login = async (user, passwd) => {
+const auth_login = async (user, passwd) => {
 	const response = await API_POST('login', { name: user, password: passwd });
 	const response_parsed = await response.json();
 
@@ -28,7 +28,7 @@ const login = async (user, passwd) => {
 	window.localStorage.localStorage.setItem('auth-token', response_parsed['auth-token']);
 }
 
-const logout = async () => {
+const auth_logout = async () => {
 	const response = await API_POST('logout', "");
 }
 

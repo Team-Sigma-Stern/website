@@ -59,7 +59,7 @@ function myBlurFunction (state) {
         overlayEle.style.display = 'none';
         containerElement.classList.remove('blur');
     }
-};
+}
 
 function easterEgg() {
 	var username = document.getElementById("username");
