@@ -187,5 +187,7 @@ function search(givenString) {
 }
 
 function openFile(file) {
-	get_project_file(activeProjectName, file);
+	get_project_file(activeProjectName, file).then(function (data) {
+		console.log(data);
+	})
 }
