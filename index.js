@@ -49,7 +49,10 @@ function toggleSidebar(item) {
 }
 
 function logout() {
-	alert("logged out");
+	auth_logout().then(function() {
+		document.getElementById('overlay').style.display = 'flex';
+		document.getElementsByClassName('main')[0].classList.add('blur');
+	});
 }
 
 function myBlurFunction (state) {
