@@ -127,6 +127,17 @@ html, body {
 
 }
 
+#sidebar-overlay {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #overlay {
     position: absolute;
     top: 0px;

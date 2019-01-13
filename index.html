@@ -26,7 +26,7 @@
 			</div>
 			<div class="image-container" width="100%">
 				<img src="./icons/Search.png" alt="">
-				<div class="after" onclick="toggleSidebar('search')"></div>
+				<div class="after" onclick="toggleSidebar('search'); myBlur"></div>
 			</div>
 			<div class="image-container" width="100%">
 				<img src="./icons/Git.png" alt="">
@@ -47,6 +47,26 @@
 			<div id="projects">
 				<div class="header">
 					<h5>Project Overview</h5>
+				</div>
+
+				<div class="header explorer">
+					<div class="image-container1">
+						<img src="./icons/Create.png" alt="">
+						<div class="after" onclick="alert('TODO');"></div>
+					</div>
+					<div class="image-container1">
+						<img src="./icons/Save.png" alt="">
+						<div class="after" onclick="alert('TODO');"></div>
+					</div>
+					<div class="image-container1">
+						<img src="./icons/Delete.png" alt="">
+						<div class="after" onclick="alert('TODO');"></div>
+					</div>
+					<div class="image-container1">
+						<img src="./icons/Close.png" alt="">
+						<div class="after" onclick="alert('TODO');"></div>
+					</div>
+
 				</div>
 				<div class="sidebar-content">
 					<div id="projects-list"></div>
@@ -78,7 +98,7 @@
 					<div id="explorer-list"></div>
 				</div>
 			</div>
-			<div id="search">
+			<div id="search" class="blur">
 				<div class="header">
 					<h5>Search</h5>
 				</div>
@@ -95,28 +115,27 @@
 					</div>
 				</div>
 			</div>
-			<div id="git">
+			<div id="git" class="blur">
 				<div class="header">
 					<h5>Git Version Control</h5>
 				</div>
 				<div class="sidebar-content">
-					git
+					<ul>
+						<li>asdas</li>
+						<li>aöfkasjfn</li>
+						<li>qweqwe</li>
+						<li>qiweöqwheq</li>
+						<li>aöfjlafsj</li>
+						<li>qäwejlqkwje</li>
+					</ul>
 				</div>
 			</div>
 			<div id="settings">
 				<div class="header">
 					<h5>Settings</h5>
-				</div><div class="sidebar-content">
-					<div>Fontsize</div>
-					<div>test</div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
+				</div>
+				<div class="sidebar-content" style="padding: 15px">
+					<h5>It seems like this feature, hasn't been released yet, please check regulary for updates!</h5>
 				</div>
 			</div>
 		</div>
