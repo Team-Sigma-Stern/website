@@ -62,6 +62,5 @@ const get_project_files = async (project) => {
 
 const get_project_file = async (project, id) => {
 	const response = await API_GET('projects/' + project + '/files/' + id);
-	const response_parsed = await response.json();
-	return response_parsed;
+	return response;
 }
