@@ -87,59 +87,63 @@ function updateProjectOverview() {
 	});
 }
 
-function fillProjectSidebar(sidebar, recieved) {
-	sidebar.innerHTML = "";
-	for (var content in recieved)
-	{
-		sidebar.innerHTML += "<div class='sidebar-list'" + "onclick='selectProject(this)'>" + recieved[content] + "</div>";
-	}
-}
-function fillExplorerSidebar(sidebar, recieved) {
-	sidebar.innerHTML = "";
-	for (var content in recieved) {
-		filename = recieved[content]
-		sidebar.innerHTML += "<div id='file-" + filename + "' class='sidebar-list'" + "onclick='selectFile(\"" + filename + "\")'>" + filename + "</div>";
-	}
-}
-
 function updateExplorerOverview(project) {
 	get_project_files(project).then(function(files) {
 		fillExplorerSidebar(document.getElementById("explorer-list"), files);
 	});
 }
 
+function fillProjectSidebar(sidebar, recieved) {
+	sidebar.innerHTML = "";
+	for (var index in recieved) {
+		projectname = recieved[index]
+		sidebar.innerHTML += "<div id='project-" + projectname + "' class='sidebar-list'" + "onclick='selectProject(\"" + projectname + "\")'>" + projectname + "</div>";
+	}
+}
+function fillExplorerSidebar(sidebar, recieved) {
+	sidebar.innerHTML = "";
+	for (var index in recieved) {
+		filename = recieved[index]
+		sidebar.innerHTML += "<div id='file-" + filename + "' class='sidebar-list'" + "onclick='selectFile(\"" + filename + "\")'>" + filename + "</div>";
+	}
+}
+
 function selectProject(name) {
-	if (activeProject === null) {
-		name.style.backgroundColor = "rgb(35,35,35)";
+	if (activeProject == null) {
+		document.getElementById('project-' + name).style.backgroundColor = "rgb(35,35,35)";
 		activeProject = name;
-		activeProjectName = activeProject.innerHTML;
-		setEditorName(activeProjectName, activeFileName);
-		toggleSidebar("explorer");//done
-		updateExplorerOverview(activeProject.innerHTML);//done
+		setEditorName(activeProjectName);
+		toggleSidebar("explorer");
+		updateExplorerOverview(activeProject);
 	} else if (activeProject != name) {
-		activeProject.style.backgroundColor = "";
-		name.style.backgroundColor= "rgb(35,35,35)"
+		document.getElementById('project-' + activeProject).style.backgroundColor = "";
+		document.getElementById('project-' + name).style.backgroundColor = "rgb(35,35,35)"
 		activeProject = name;
-		activeProjectName = activeProject.innerHTML;
-		activeFileName = "";
-		setEditorName(activeProjectName, activeFileName);
-		toggleSidebar("explorer");//done
-		updateExplorerOverview(activeProject.innerHTML);//done
+		selectFile(null);
+		setEditorName(activeProjectName);
+		toggleSidebar("explorer");
+		updateExplorerOverview(activeProject);
 	}
 }
 
 function selectFile(name) {
-	alert(name);
+	if (name == null) {
+		saveFile();
+		closeFile();
+		activeFile = null;
+	}
 	if (activeFile == null) {
 		document.getElementById('file-' + name).style.backgroundColor = "rgb(35,35,35)";
 		activeFile = name;
-		setEditorName(activeProjectName, activeFile);
-		openFile(activeFile);
+		setEditorName(activeProjectName);
+		openFile();
 	} else if (activeFile != name) {
 		document.getElementById('file-' + activeFile).style.backgroundColor = "";
 		document.getElementById('file-' + name).style.backgroundColor = "rgb(35,35,35)";
+		saveFile();
+		closeFile();
 		activeFile = name;
-		setEditorName(activeProjectName, activeFile);
+		setEditorName(activeProjectName);
 		openFile();
 	}
 }
