@@ -148,6 +148,8 @@ function setEditorName() {
 	displayname = activeProject;
 	if (activeFile != null) {
 		displayname += "/" + activeFile;
+	} else {
+		displayname = "Untitled File";
 	}
 	document.getElementById("file-name").innerHTML = displayname;
 }
@@ -159,6 +161,8 @@ function search(givenString) {
 }
 
 function openFile() {
+	if (activeFile == null) return;
+
 	lock_project_file(activeProject, activeFile).then(function () {
 		get_project_file(activeProject, activeFile).then(function (data) {
 			editor.setValue(data);
@@ -171,5 +175,7 @@ function saveFile() {
 
 function closeFile() {
 	editor.setValue("");
+	if (activeFile == null) return;
+
 	unlock_project_file(activeProject, activeFile);
 }
