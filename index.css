@@ -88,6 +88,34 @@ html, body {
     border-bottom: 2px solid rgb(54, 54, 54);
     background-color: rgb(30,30,30);
 }
+.header.explorer {
+    background-color: rgb(30, 30, 30);
+    height: 50px;
+    padding: 10px 0px;
+    display:flex;
+    flex:1 1 auto;
+}
+.image-container1 {
+    position: relative;
+    min-height: 30px;
+    padding-left: 15px;
+    padding-bottom: 0px;
+}
+.image-container1 .after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: none;
+    margin: -5px -5px -5px 15px;
+    color: #FFF;
+    cursor: pointer;
+}
+.image-container1:hover .after {
+    display: block;
+    background: rgba(0, 0, 0, .6);
+}
 
 .header h5 {
     color: rgb(109, 255, 73);
