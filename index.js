@@ -29,31 +29,26 @@ if (window.localStorage.getItem('DEVELOPER_LOGIN_BYPASS') == 'yes') {
 function toggleSidebar(item) {
 	if (item == null) {
 		if (active != null) {
-			// deactivate tab active
 			document.getElementById(active).style.display = "none";
 		}
 		return
 	}
 
 	if (active == null) {
-		// activate tab item
+		document.getElementById(item).style.display = "block";
 		active = item;
 		document.getElementById("sidebar").style.display = "block";
 		editor.layout(1,1);
 		editor.layout();
-		document.getElementById(item).style.display = "block";
 	} else if (active == item) {
-		// deactivate tab item
+		document.getElementById(item).style.display = "none";
 		active = null;
 		document.getElementById("sidebar").style.display = "none";
-		document.getElementById(item).style.display = "none";
 		editor.layout();
 	} else {
-		// deactivate tab active
-		// activate tab item
 		document.getElementById(active).style.display = "none";
-		active = item;
 		document.getElementById(item).style.display = "block";
+		active = item;
 	}
 }
 
@@ -78,22 +73,8 @@ function logout() {
 	});
 }
 
-function myBlurFunction (state) {
-    /* state can be 1 or 0 */
-    var containerElement = document.getElementsByClassName('main')[0];
-    var overlayEle = document.getElementById('overlay');
-
-    if (state) {
-        overlayEle.style.display = 'flex';
-        containerElement.classList.add('blur');
-    } else {
-        overlayEle.style.display = 'none';
-        containerElement.classList.remove('blur');
-    }
-}
-
 function easterEgg() {
-	var username = document.getElementById("username");
+	var username = document.getElementById("auth-username");
 	if (username.value.toLowerCase() === "ruffdd") {
 		document.getElementById("dialog").style.backgroundImage = "url('./icons/david.jpg')";
 	} else {
@@ -101,11 +82,10 @@ function easterEgg() {
 	}
 }
 
-
-async function updateProjectOverview() {
-	var projects = await get_projects();
-	var sidebar = document.getElementById("projects-list");
-	fillProjectSidebar(sidebar, projects);
+function updateProjectOverview() {
+	get_projects().then(function (projects) {
+		fillProjectSidebar(document.getElementById("projects-list"), projects);
+	});
 }
 
 function fillProjectSidebar(sidebar, recieved) {
@@ -117,16 +97,16 @@ function fillProjectSidebar(sidebar, recieved) {
 }
 function fillExplorerSidebar(sidebar, recieved) {
 	sidebar.innerHTML = "";
-	for (var content in recieved)
-	{
-		sidebar.innerHTML += "<div class='sidebar-list'" + "onclick='selectFile(this)'>" + recieved[content] + "</div>";
+	for (var content in recieved) {
+		filename = recieved[content]
+		sidebar.innerHTML += "<div id='file-" + filename + "' class='sidebar-list'" + "onclick='selectFile('" + filename + "')'>" + filename + "</div>";
 	}
 }
 
-async function updateExplorerOverview(project) {
-	var files = await get_project_files(project);
-	var sidebar = document.getElementById("explorer-list");
-	fillExplorerSidebar(sidebar, files);
+function updateExplorerOverview(project) {
+	get_project_files(project).then(function(files) {
+		fillExplorerSidebar(document.getElementById("explorer-list"), files);
+	});
 }
 
 function selectProject(name) {
@@ -137,9 +117,7 @@ function selectProject(name) {
 		setEditorName(activeProjectName, activeFileName);
 		toggleSidebar("explorer");//done
 		updateExplorerOverview(activeProject.innerHTML);//done
-	} else if (activeProject === name) {
-
-	} else {
+	} else if (activeProject != name) {
 		activeProject.style.backgroundColor = "";
 		name.style.backgroundColor= "rgb(35,35,35)"
 		activeProject = name;
@@ -152,22 +130,17 @@ function selectProject(name) {
 }
 
 function selectFile(name) {
-	if (activeFile === null) {
-		console.log(name.innerHTML);
-		name.style.backgroundColor = "rgb(35,35,35)";
+	if (activeFile == null) {
+		document.getElementById('file-' + name).style.backgroundColor = "rgb(35,35,35)";
 		activeFile = name;
-		activeFileName =activeFile.innerHTML;
-		setEditorName(activeProjectName, activeFileName);
-		openFile(activeFileName);
-	} else if (activeFile === name) {
-
-	} else {
-		activeFile.style.backgroundColor = "";
-		name.style.backgroundColor= "rgb(35,35,35)"
+		setEditorName(activeProjectName, activeFile);
+		openFile(activeFile);
+	} else if (activeFile != name) {
+		document.getElementById('file-' + activeFile).style.backgroundColor = "";
+		document.getElementById('file-' + name).style.backgroundColor = "rgb(35,35,35)";
 		activeFile = name;
-		activeFileName =activeFile.innerHTML;
-		setEditorName(activeProjectName, activeFileName);
-		openFile(activeFileName);
+		setEditorName(activeProjectName, activeFile);
+		openFile(activeFile);
 	}
 }
 
@@ -186,8 +159,18 @@ function search(givenString) {
 	}
 }
 
-function openFile(file) {
-	get_project_file(activeProjectName, file).then(function (data) {
-		editor.setValue(data);
-	})
+function openFile() {
+	lock_project_file(activeProjectName, activeFile).then(function () {
+		get_project_file(activeProjectName, activeFile).then(function (data) {
+			editor.setValue(data);
+		});
+	});
+}
+
+function saveFile() {
+}
+
+function closeFile() {
+	editor.setValue("");
+	unlock_project_file(activeProjectName, activeFile)
 }
