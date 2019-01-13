@@ -148,6 +148,8 @@ function setEditorName() {
 	displayname = activeProject;
 	if (activeFile != null) {
 		displayname += "/" + activeFile;
+	} else {
+		displayname = "Untitled File";
 	}
 	document.getElementById("file-name").innerHTML = displayname;
 }
