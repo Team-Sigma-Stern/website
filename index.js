@@ -5,7 +5,6 @@ var active = null;
 var activeProject = null;
 var activeProjectName = "";
 var activeFile = null;
-var activeFileName = "";
 
 require(['vs/editor/editor.main'], function() {
 	editor = monaco.editor.create(document.getElementById('editor'), {
@@ -99,7 +98,7 @@ function fillExplorerSidebar(sidebar, recieved) {
 	sidebar.innerHTML = "";
 	for (var content in recieved) {
 		filename = recieved[content]
-		sidebar.innerHTML += "<div id='file-" + filename + "' class='sidebar-list'" + "onclick='selectFile('" + filename + "')'>" + filename + "</div>";
+		sidebar.innerHTML += "<div id='file-" + filename + "' class='sidebar-list'" + "onclick='selectFile(\"" + filename + "\")'>" + filename + "</div>";
 	}
 }
 
@@ -130,6 +129,7 @@ function selectProject(name) {
 }
 
 function selectFile(name) {
+	alert(name);
 	if (activeFile == null) {
 		document.getElementById('file-' + name).style.backgroundColor = "rgb(35,35,35)";
 		activeFile = name;
@@ -140,15 +140,15 @@ function selectFile(name) {
 		document.getElementById('file-' + name).style.backgroundColor = "rgb(35,35,35)";
 		activeFile = name;
 		setEditorName(activeProjectName, activeFile);
-		openFile(activeFile);
+		openFile();
 	}
 }
 
-function setEditorName(projectname, filename) {
+function setEditorName(projectname) {
 	var displayname = "";
 	displayname = projectname;
-	if (filename != "") {
-		displayname += "/" + filename;
+	if (activeFile != null) {
+		displayname += "/" + activeFile;
 	}
 	document.getElementById("file-name").innerHTML = displayname;
 }
@@ -172,5 +172,5 @@ function saveFile() {
 
 function closeFile() {
 	editor.setValue("");
-	unlock_project_file(activeProjectName, activeFile)
+	unlock_project_file(activeProjectName, activeFile);
 }
