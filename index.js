@@ -2,6 +2,7 @@ require.config({ paths: { 'vs': '../node_modules/monaco-editor/min/vs' }});
 
 var editor;
 var active = null;
+var active = null;
 
 require(['vs/editor/editor.main'], function() {
 	editor = monaco.editor.create(document.getElementById('editor'), {
@@ -67,5 +68,20 @@ function easterEgg() {
 		document.getElementById("dialog").style.backgroundImage = "url('./icons/david.jpg')";
 	} else {
 		document.getElementById("dialog").style.backgroundImage = null;
+	}
+}
+
+
+async function updateProjectOverview() {
+	var projects = await get_projects();
+	var sidebar = document.getElementById("projects-list");
+	fillSidebar(sidebar, projects);
+}
+
+function fillSidebar(sidebar, recieved) {
+	sidebar.innerHTML = "";
+	for (var content in recieved)
+	{
+		sidebar.innerHTML += "<li>" + recieved[content] + "</li>";
 	}
 }
