@@ -14,10 +14,8 @@
 	<title>Editor</title>
 </head>
 <body>
-
 	<div class="main blur">
 		<div id="icon-bar" class="item">
-
 			<div class="image-container">
 				<img src="./icons/Projects.png" alt="">
 				<div class="after" onclick="toggleSidebar('projects'); updateProjectOverview();"></div>
@@ -34,8 +32,6 @@
 				<img src="./icons/Git.png" alt="">
 				<div class="after" onclick="toggleSidebar('git')"></div>
 			</div>
-
-
 			<div style="position: absolute; bottom: 0px; left:10px; width: 30px">
 				<div class="image-container" width="100%">
 					<img src="./icons/Settings.png" alt="">
@@ -45,8 +41,6 @@
 					<img src="./icons/Logout.png" alt="">
 					<div class="after" onclick="logout()"></div>
 				</div>
-
-
 			</div>
 		</div>
 		<div id="sidebar" class="item">
@@ -107,16 +101,16 @@
 		</div>
 	</div>
 	<div id="overlay">
-			<div class="container" id="dialog">
-				<h1>Willkommen</h1>
-				<form class="form">
-					<input id="username" placeholder="Username" type="text" onkeyup="easterEgg()">
-					<input placeholder="Password" type="password">
-					<button type="button" id="login-button" onclick="myBlurFunction(false);">Login</button>
-					<p style="font-size: 75%; padding: 15px"><a href="./passwdReset.html">Passwort vergessen?</a></p>
-				</form>
-			</div>
+		<div class="container" id="dialog">
+			<h1>Willkommen</h1>
+			<form class="form">
+				<input id="auth-username" placeholder="Username" type="text" onkeyup="easterEgg()">
+				<input id="auth-password" placeholder="Password" type="password">
+				<button type="button" id="login-button" onclick="login()">Login</button>
+				<p style="font-size: 75%; padding: 15px"><a href="./passwdReset.html">Passwort vergessen?</a></p>
+			</form>
 		</div>
+	</div>
 	<script src="./node_modules/monaco-editor/min/vs/loader.js"></script>
 	<script src="./api.js"></script>
 	<script src="./index.js"></script>

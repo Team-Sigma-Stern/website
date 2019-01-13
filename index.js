@@ -49,6 +49,20 @@ function toggleSidebar(item) {
 	}
 }
 
+function login() {
+	auth_login(
+		document.getElementById('auth-username').value,
+		document.getElementById('auth-password').value
+	).then(function(success) {
+		if (success) {
+			document.getElementById('overlay').style.display = 'none';
+			document.getElementsByClassName('main')[0].classList.remove('blur');
+		} else {
+			alert('Wrong password');
+		}
+	});
+}
+
 function logout() {
 	auth_logout().then(function() {
 		document.getElementById('overlay').style.display = 'flex';
