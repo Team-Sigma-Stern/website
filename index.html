@@ -20,7 +20,7 @@
 
 			<div class="image-container">
 				<img src="./icons/Projects.png" alt="">
-				<div class="after" onclick="toggleSidebar('projects')"></div>
+				<div class="after" onclick="toggleSidebar('projects'); updateProjectOverview();"></div>
 			</div>
 			<div class="image-container" width="100%">
 				<img src="./icons/Explorer_big.png" alt="">
@@ -55,7 +55,7 @@
 					<h5>Project Overview</h5>
 				</div>
 				<div class="sidebar-content">
-
+					<ul id="projects-list"></ul>
 				</div>
 			</div>
 			<div id="explorer">
@@ -113,6 +113,7 @@
 					<input id="username" placeholder="Username" type="text" onkeyup="easterEgg()">
 					<input placeholder="Password" type="password">
 					<button type="button" id="login-button" onclick="myBlurFunction(false);">Login</button>
+					<p style="font-size: 75%; padding: 15px"><a href="./passwdReset.html">Passwort vergessen?</a></p>
 				</form>
 			</div>
 		</div>
