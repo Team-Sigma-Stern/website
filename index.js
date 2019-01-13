@@ -21,6 +21,11 @@ window.onresize = function(event) {
 	editor.layout();
 }
 
+if (window.localStorage.getItem('DEVELOPER_LOGIN_BYPASS') == 'yes') {
+	document.getElementById('overlay').style.display = 'none';
+	document.getElementsByClassName('main')[0].classList.remove('blur');
+}
+
 function toggleSidebar(item) {
 	if (item == null) {
 		if (active != null) {
