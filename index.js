@@ -12,6 +12,11 @@ require(['vs/editor/editor.main'], function() {
 	});
 });
 
+window.onresize = function(event) {
+	editor.layout(1,1);
+	editor.layout();
+}
+
 function toggleSidebar(item) {
 	if (item == null) {
 		if (active != null) {
